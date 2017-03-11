@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import ReactiveSwift
+import ReactiveCocoa
 
 class MainViewController: UIViewController {
 
     @IBOutlet weak var userNameLabel: UILabel!
     
+    var mainViewModel : MainViewModel = MainViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // 绑定代码
+        self.userNameLabel.reactive.text <~ mainViewModel.userName
     }
 
     override func didReceiveMemoryWarning() {

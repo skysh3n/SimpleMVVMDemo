@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import ReactiveSwift
 
 class SettingViewController: UIViewController {
 
     @IBOutlet weak var userNameTextField: UITextField!
+    
+    var settingViewModel : SettingViewModel = SettingViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // 绑定代码
+        self.userNameTextField.reactive.text <~ settingViewModel.userName
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,6 +26,8 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func modifyButtonPressed(_ sender: UIButton) {
+        self.settingViewModel.userName.value = self.userNameTextField.text!
+        self.userNameTextField.resignFirstResponder()
     }
     
 
